@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Куда подать доклад 2027</title>
+<style>
+:root{
+  --bg:#f7f7f5; --card:#ffffff; --text:#1d1d1f; --muted:#6b6b70; --line:#e3e3e0; --track:#efefec;
+  --accent:#2f5bd3; --accent-soft:#e7edfc;
+  --ok:#1f7a4d; --ok-soft:#e3f4ea; --warn:#9a6200; --warn-soft:#fbf0d9;
+  --off:#7a7a80; --off-soft:#eeeeec; --hot:#b4361f; --hot-soft:#fbe6e1; --ev:#6a3fc4; --ev-soft:#efe8fb;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141416; --card:#1d1d20; --text:#ececef; --muted:#9a9aa2; --line:#2e2e33; --track:#26262a;
+    --accent:#7d9cff; --accent-soft:#232c45;
+    --ok:#5fcf93; --ok-soft:#1b3326; --warn:#e3b45a; --warn-soft:#3a2f17;
+    --off:#9a9aa2; --off-soft:#26262a; --hot:#ff8a73; --hot-soft:#3d221c; --ev:#b89bff; --ev-soft:#2c2342;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141416; --card:#1d1d20; --text:#ececef; --muted:#9a9aa2; --line:#2e2e33; --track:#26262a;
+  --accent:#7d9cff; --accent-soft:#232c45;
+  --ok:#5fcf93; --ok-soft:#1b3326; --warn:#e3b45a; --warn-soft:#3a2f17;
+  --off:#9a9aa2; --off-soft:#26262a; --hot:#ff8a73; --hot-soft:#3d221c; --ev:#b89bff; --ev-soft:#2c2342;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:28px;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:19px;margin:34px 0 12px}
+.sub{color:var(--muted);margin:0 0 14px;max-width:860px}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin:6px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:22px;height:8px;border-radius:4px}
+.sw.open{background:var(--ok)} .sw.exp{background:repeating-linear-gradient(45deg,var(--warn) 0 4px,transparent 4px 7px);border:1px solid var(--warn)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ev)}
+.dot.est{background:transparent;border:2px solid var(--ev)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.box h3{margin:0 0 8px;font-size:15px}
+.mini{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:14px}
+.mini:first-of-type{border-top:0}
+.mini .l b{display:block}
+.mini .l small{color:var(--muted)}
+.mini .r{text-align:right;white-space:nowrap;font-weight:600}
+.mini .r small{display:block;font-weight:400;color:var(--muted)}
+.red{color:var(--hot)} .amber{color:var(--warn)} .green{color:var(--ok)}
+
+.filters{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters input,.filters select{font:inherit;font-size:14px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text)}
+.filters input{flex:1 1 200px;min-width:160px}
+.btn{font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text);cursor:pointer}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:14px;padding:7px 12px;border:0;background:var(--card);color:var(--text);cursor:pointer}
+.seg button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.chip{font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);cursor:pointer;user-select:none;color:var(--text)}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.count{color:var(--muted);font-size:13px;margin:12px 0 8px}
+
+.list{display:flex;flex-direction:column;gap:12px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ev .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.ev h3{margin:0;font-size:17px}
+.ev .org{color:var(--muted);font-size:13px}
+.stars{color:var(--hot);letter-spacing:1px;font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 8px}
+.slot{border-radius:10px;padding:9px 12px;border:1px solid var(--line)}
+.slot .k{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;align-items:center}
+.slot .v{font-size:16px;font-weight:650;margin-top:2px}
+.slot .n{font-size:13px;color:var(--muted);margin-top:2px}
+.slot.cfp-open{background:var(--ok-soft);border-color:transparent}
+.slot.cfp-open .v{color:var(--ok)}
+.slot.cfp-expected{background:var(--warn-soft);border-color:transparent}
+.slot.cfp-expected .v{color:var(--warn)}
+.slot.cfp-unknown{background:var(--off-soft);border-color:transparent}
+.slot.cfp-closed{background:var(--off-soft);border-color:transparent}
+.slot.cfp-closed .v{color:var(--off)}
+.slot.event{background:var(--ev-soft);border-color:transparent}
+.slot.event .v{color:var(--ev)}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;letter-spacing:0;text-transform:none}
+.b-open{background:var(--ok);color:#fff}
+.b-expected{background:var(--warn);color:#fff}
+.b-unknown{background:var(--off);color:#fff}
+.b-closed{background:var(--off);color:#fff}
+.b-est{background:transparent;color:var(--warn);border:1px solid var(--warn)}
+.left{font-weight:700}
+
+.tl{position:relative;height:30px;margin:4px 0 2px}
+.tl .bar{position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:var(--track)}
+.tl .m{position:absolute;top:22px;font-size:10px;color:var(--muted);transform:translateX(-50%);white-space:nowrap}
+.tl .tick{position:absolute;top:10px;width:1px;height:10px;background:var(--line)}
+.tl .seg-cfp{position:absolute;top:11px;height:8px;border-radius:4px}
+.tl .seg-cfp.open{background:var(--ok)}
+.tl .seg-cfp.exp{background:repeating-linear-gradient(45deg,var(--warn) 0 4px,transparent 4px 7px);border:1px solid var(--warn)}
+.tl .evd{position:absolute;top:8px;width:14px;height:14px;border-radius:50%;background:var(--ev);transform:translateX(-50%);border:2px solid var(--card)}
+.tl .evd.est{background:var(--card);border:2px solid var(--ev)}
+.tl .today{position:absolute;top:2px;height:24px;width:2px;background:var(--hot);transform:translateX(-50%)}
+.tl .today::after{content:"сегодня";position:absolute;top:-12px;left:4px;font-size:10px;color:var(--hot);white-space:nowrap}
+
+.why{margin:8px 0 0;font-size:14px}
+.angle{margin:4px 0 0;font-size:13px;color:var(--muted)} .angle b{color:var(--text)}
+.foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:12px;padding:1px 8px;border-radius:999px;background:var(--off-soft);color:var(--muted)}
+.links a{display:inline-block;margin-left:12px;font-size:13px}
+
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--bg)}
+td small{color:var(--muted);display:block}
+.tablewrap{overflow-x:auto}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+.notes{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14px}
+.notes li{margin:4px 0}
+@media (max-width:820px){
+  .two,.grid2{grid-template-columns:1fr}
+  .filters{position:static}
+  .tl .m{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Куда подать доклад: AI в разработке и Go, 2026–2027</h1>
+  <p class="sub">Темы: Go-инструменты (линтеры, анализаторы), guardrails для AI-агентов, evals для скиллов. Россия, СНГ и онлайн. В каждой карточке два отдельных блока: <b>ПОДАЧА</b> (когда принимают доклады) и <b>КОНФЕРЕНЦИЯ</b> (когда она проходит). Данные проверены 21.11.2026 по сайтам организаторов, страницам CFP и Telegram-каналам.</p>
+  <div class="legend">
+    <span><i class="sw open"></i> подача открыта (подтверждено)</span>
+    <span><i class="sw exp"></i> подача ожидается (оценка по прошлому году)</span>
+    <span><i class="dot"></i> конференция, дата объявлена</span>
+    <span><i class="dot est"></i> конференция, дата ожидается</span>
+  </div>
+
+  <h2>Главное по срокам</h2>
+  <div class="grid2">
+    <div class="box"><h3 class="green">Подача открыта</h3><div id="openList"></div></div>
+    <div class="box"><h3 class="amber">Скоро откроется (по прошлым годам)</h3><div id="soonList"></div></div>
+  </div>
+
+  <h2>Все конференции</h2>
+  <div class="filters">
+    <span class="seg" id="view"><button data-v="cards" class="on">Карточки</button><button data-v="table">Таблица сроков</button></span>
+    <input id="q" type="search" placeholder="Поиск: название, тема, организатор">
+    <select id="country"><option value="">Все страны</option></select>
+    <select id="city"><option value="">Все города</option></select>
+    <select id="format">
+      <option value="">Любой формат</option>
+      <option value="online">Онлайн</option>
+      <option value="offline">Офлайн</option>
+      <option value="hybrid">Офлайн + онлайн</option>
+    </select>
+    <select id="cfp">
+      <option value="">Любой статус подачи</option>
+      <option value="open">Подача открыта</option>
+      <option value="expected">Подача ожидается</option>
+      <option value="unknown">Неизвестно</option>
+      <option value="closed">Закрыта (можно посетить)</option>
+    </select>
+    <select id="period">
+      <option value="">Конференция: любой период</option>
+      <option value="now">ноябрь 2026 – февраль 2027</option>
+      <option value="spring">март – июнь 2027</option>
+      <option value="late">июль – декабрь 2027</option>
+    </select>
+    <select id="rel">
+      <option value="0">Любая релевантность</option>
+      <option value="2">★★ и выше</option>
+      <option value="3">Только ★★★</option>
+    </select>
+    <button class="btn" id="reset">Сбросить</button>
+  </div>
+  <div class="chips" id="topics"></div>
+  <div class="count" id="count"></div>
+  <div id="out"></div>
+
+  <h2>Как читать оценки и что проверить</h2>
+  <div class="notes">
+    <ul>
+      <li><b>«Ожидается»</b> — организатор ещё ничего не объявил, срок взят по прошлому году. Источник оценки указан в карточке. Подписывайтесь на канал конференции заранее: приём часто открывают за 2–4 месяца до дедлайна.</li>
+      <li><b>«Открыта, срок не назван»</b> (CodeFest, DUMP, Merge, Conf42): подавайте как можно раньше. Программный комитет отбирает доклады по мере поступления, и слоты заканчиваются раньше официального закрытия.</li>
+      <li><b>Онтико</b> (DevOpsConf, GolangConf, AiConf, HighLoad++, AI Native Conf): подача через conf.ontico.ru, нужен вход в личный кабинет. Иногородним спикерам оплачивают дорогу и проживание. Все открытые приёмы видны на <a href="https://ontico.ru/cfp.html">ontico.ru/cfp.html</a>.</li>
+      <li><b>JUG Ru Group</b> (AI Dev Conf, Heisenbug): у них есть общая форма для спикеров <a href="https://jugru.org/en/callforpapers-speaker/">jugru.org/callforpapers-speaker</a>, организаторы отвечают за 2–3 дня.</li>
+      <li><b>Не нашлось.</b> По Беларуси нет живых конференций по Go или AI для разработчиков: домен GoWayFest продаётся. По Узбекистану есть только DevFest Tashkent, остальное — бизнес-форумы. Agentic Dev Conf (agenticdevconf.ru) упоминается в поиске, но сайт не открылся, поэтому в список её не включил.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+/* cfp.status: open | expected | unknown | closed
+   cfp.to:   ISO-дата дедлайна (если известна или оценена); cfp.toEst = true, если это оценка
+   cfp.from: ISO-дата открытия (если известна или оценена)
+   start:    ISO-дата начала конференции; est = true, если дата не объявлена */
+const EVENTS = [
+  // ===== ОНЛАЙН =====
+  {name:"Podlodka AI Crew #5", org:"Podlodka", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-03-01", dateText:"1–5 марта 2027", est:false,
+   cfp:{status:"open", to:"2026-12-31", toEst:true, text:"примерно до середины декабря – начала января",
+        note:"Форма открыта всегда. Организаторы просят подавать за 1,5–2 месяца до старта сезона."},
+   rel:3, topics:["AI в разработке","Агенты / guardrails","Evals"],
+   why:"Неделя онлайн-сессий в Zoom про AI в инженерной практике.",
+   angle:"Evals для скиллов агентов; guardrails и линтеры как обвязка агента.",
+   links:[["Сайт","https://podlodka.io/aicrew"],["Форма спикера","https://a37921.webask.io/9d5h7iig4"],["Источник","https://vibecoding.ru/events/podlodka-ai-crew-5-2027"]]},
+  {name:"Podlodka AI Crew #6", org:"Podlodka", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-06-14", dateText:"ожидается ~июнь 2027", est:true,
+   cfp:{status:"open", text:"форма открыта всегда", note:"Сезон #4 прошёл 15–19 июня 2026, поэтому #6 ожидается примерно в то же время. Подавайте за 1,5–2 месяца до старта."},
+   rel:2, topics:["AI в разработке","Агенты / guardrails"],
+   why:"Следующий сезон AI Crew, запасной вариант после #5.",
+   angle:"То же, что для #5, но с результатами за полгода.",
+   links:[["Сайт","https://podlodka.io/aicrew"],["Форма спикера","https://a37921.webask.io/9d5h7iig4"],["Источник","https://vibecoding.ru/events/podlodka-ai-crew-6-2027"]]},
+  {name:"Podlodka Go Crew #8", org:"Podlodka", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-06-01", dateText:"ожидается ~июнь 2027", est:true,
+   cfp:{status:"open", text:"форма открыта всегда", note:"Сезон #7 прошёл 1–5 июня 2026 вместе с 2ГИС. Дату сезона #8 не объявили."},
+   rel:3, topics:["Go","Инструменты / линтеры"],
+   why:"Недельный онлайн-сезон для Go-разработчиков.",
+   angle:"Свои go/analysis-линтеры; Go-тулинг для AI-сгенерированного кода.",
+   links:[["Сайт","https://podlodka.io/gocrew"],["Форма спикера","https://a37921.webask.io/9d5h7iig4"],["Сезон #7","https://networkly.app/event/podlodka-go-crew-7-01-06-2026_6357"]]},
+  {name:"Conf42 Golang 2027", org:"Conf42 (на англ.)", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-05-13", dateText:"13 мая 2027", est:false,
+   cfp:{status:"open", text:"открыта, срок не нашёл", note:"Срок указан на cfp.ninja, но эта страница не открылась у меня автоматически. Доклад записывается заранее."},
+   rel:3, topics:["Go","Инструменты / линтеры"],
+   why:"Бесплатная англоязычная онлайн-конференция по Go с низким порогом входа. Доклад потом можно показывать в портфолио.",
+   angle:"Go-линтеры и статический анализ как guardrails для AI-кода.",
+   links:[["Сайт","https://www.conf42.com/golang2027"],["CFP","https://cfp.ninja/e/conf42-golang-2027"]]},
+  {name:"Conf42 Large Language Models 2027", org:"Conf42 (на англ.)", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-06-10", dateText:"10 июня 2027", est:false,
+   cfp:{status:"open", text:"открыта, срок не нашёл", note:"Срок на странице cfp.ninja."},
+   rel:2, topics:["AI в разработке","Evals"],
+   why:"Бесплатная онлайн-конференция про LLM.",
+   angle:"Evals: как проверять, что скилл не деградирует.",
+   links:[["Сайт","https://www.conf42.com/llms2027"],["CFP","https://cfp.ninja/e/conf42-llms-2027"]]},
+  {name:"Conf42 AI Agents 2027", org:"Conf42 (на англ.)", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-09-23", dateText:"23 сентября 2027", est:false,
+   cfp:{status:"open", text:"открыта, срок не нашёл", note:"Срок на странице cfp.ninja."},
+   rel:3, topics:["Агенты / guardrails","Evals"],
+   why:"Конференция только про агентов, совпадает с вашей темой guardrails и evals.",
+   angle:"Guardrails, линтеры и evals для скиллов coding-агентов.",
+   links:[["Сайт","https://www.conf42.com/agents2027"],["CFP","https://cfp.ninja/e/conf42-agents-2027"]]},
+  {name:"Conf42 Prompt Engineering 2027", org:"Conf42 (на англ.)", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-10-14", dateText:"14 октября 2027", est:false,
+   cfp:{status:"open", text:"ссылка на CFP на странице события", note:""},
+   rel:1, topics:["AI в разработке"],
+   why:"Запасной вариант для доклада про скиллы и промпты.",
+   angle:"Скиллы как код: ревью, тесты, evals.",
+   links:[["Сайт","https://www.conf42.com/prompt2027"]]},
+  {name:"AI Dev Conf 2027 · весна", org:"JUG Ru Group", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2027-05-20", dateText:"ожидается ~май 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"Весенний выпуск 2026 прошёл 21 мая. Можно написать в общую форму спикеров JUG Ru, не дожидаясь CFP."},
+   rel:3, topics:["AI в разработке","Evals","Агенты / guardrails"],
+   why:"Онлайн-конференция об AI в SDLC и агентной разработке. В программе 2026 был доклад про evals для агентского продукта.",
+   angle:"Evals для скиллов; guardrails в CI для AI-кода.",
+   links:[["Сайт","https://aidevconf.org/"],["Форма JUG Ru","https://jugru.org/en/callforpapers-speaker/"],["Весна 2026","https://aidevconf.org/2026-spring"]]},
+  {name:"AI Dev Conf 2026 · осень", org:"JUG Ru Group", country:"Онлайн", city:"Онлайн", format:"online",
+   start:"2026-11-26", dateText:"26 и 28 ноября 2026", est:false,
+   cfp:{status:"closed", text:"программа собрана", note:"Можно посмотреть уровень докладов перед подачей на весну."},
+   rel:2, topics:["AI в разработке"],
+   why:"Проходит на этой неделе.", angle:"",
+   links:[["Сайт","https://aidevconf.org/"]]},
+
+  // ===== МОСКВА =====
+  {name:"DevOpsConf 2027", org:"Онтико", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2027-04-05", dateText:"апрель 2027", est:false,
+   cfp:{status:"open", to:"2026-12-06", text:"до 6 декабря 2026",
+        note:"Ищут доклады о реальном опыте, в том числе неудачном. Если вашей темы нет в списке, подавать всё равно можно."},
+   rel:3, topics:["Агенты / guardrails","AI в разработке","Инструменты / линтеры"],
+   why:"В темах CFP есть «единые инструкции и guardrails для команды, quality gates, детерминированная валидация результата» и «платформы для AI: harness, guardrails, оркестрация агентов».",
+   angle:"Guardrails и детерминированные проверки, с которыми дешёвые модели работают почти как топовые.",
+   links:[["Сайт","https://devopsconf.io/"],["Подать","https://cfp.devopsconf.io/#submit"],["Анонс в TG","https://t.me/s/DevOpsConfChannel"]]},
+  {name:"GolangConf 2027", org:"Онтико", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2027-04-20", dateText:"ожидается ~апрель 2027", est:true,
+   cfp:{status:"expected", to:"2027-01-23", toEst:true, text:"~декабрь – январь",
+        note:"В 2026 году заявки принимали до 23 января, а конференция прошла 20 апреля. Анонса 2027 года пока нет."},
+   rel:3, topics:["Go","AI в разработке","Инструменты / линтеры"],
+   why:"Главная Go-конференция в России. Среди рекомендованных тем 2026 года были «Повышение качества AI-кода на Go» и «AI для разработчика».",
+   angle:"Линтеры на go/analysis, которые держат AI-код в рамках.",
+   links:[["Сайт","https://golangconf.ru/"],["CFP","https://cfp.golangconf.ru/"],["TG","https://t.me/GolangConfChannel"]]},
+  {name:"AiConf 2027", org:"Онтико", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2027-04-20", dateText:"2027, дата не опубликована", est:true,
+   cfp:{status:"expected", text:"не объявлена", note:"Билеты уже продаются (36 000 ₽), значит конференция точно будет. AiConf 2026 прошла 20 апреля, вместе с GolangConf."},
+   rel:2, topics:["AI в разработке","Evals"],
+   why:"Конференция Онтико по data science и GenAI. Доклад про evals здесь уместен.",
+   angle:"Методика evals для LLM-скиллов.",
+   links:[["Сайт","https://aiconf.ru/"],["Онтико CFP","https://ontico.ru/cfp.html"]]},
+  {name:"AiGenConf 2026", org:"Стачка", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2026-12-13", dateText:"13 декабря 2026", est:false,
+   cfp:{status:"unknown", text:"программа формируется", note:"Открытого CFP не нашёл. Если хотите выступить, пишите организаторам Стачки."},
+   rel:2, topics:["AI в разработке"],
+   why:"Офлайн-конференция для разработчиков, лидов и аналитиков, которые внедряют AI. Проходит в Центральном университете.",
+   angle:"Guardrails для AI-агентов в команде.",
+   links:[["Сайт","https://aigenconf.ru/"],["Анонс","https://t.me/nastachku_ru/1864"]]},
+  {name:"ИИ в разработке: технологии, безопасность, кейсы", org:"CNews", country:"Россия", city:"Москва", format:"offline",
+   start:"2027-02-09", dateText:"9 февраля 2027", est:false,
+   cfp:{status:"unknown", text:"порядок подачи не указан", note:"Корпоративный и вендорский формат."},
+   rel:1, topics:["AI в разработке"],
+   why:"Митап CNews об AI в разработке и безопасности.",
+   angle:"Безопасность AI-кода: guardrails и статический анализ.",
+   links:[["Источник","https://vibecoding.ru/events/ii-v-razrabotke-tekhnologii-bezopasnost-keysy-2027"]]},
+  {name:"Heisenbug 2027 Spring", org:"JUG Ru Group", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2027-04-27", dateText:"ожидается ~конец апреля 2027", est:true,
+   cfp:{status:"expected", from:"2026-10-15", to:"2027-02-15", toEst:true, text:"вероятно, уже идёт: осень – зима",
+        note:"CFP на весну 2026 открыли осенью 2025, а рассмотрение заявок началось в начале ноября. Проверьте heisenbug.ru и канал @heisenbug_channel."},
+   rel:2, topics:["Evals","AI в разработке"],
+   why:"Конференция по тестированию. Evals — это тестирование недетерминированных систем, так что тема подходит.",
+   angle:"Evals для скиллов как тестовая пирамида для LLM.",
+   links:[["Сайт","https://heisenbug.ru/"],["Форма JUG Ru","https://jugru.org/en/callforpapers-speaker/"]]},
+  {name:"Let's GoConf 2027", org:"Speach (команда DUMP)", country:"Россия", city:"Москва", format:"offline",
+   start:"2027-09-10", dateText:"ожидается ~сентябрь 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"Конференция 2026 прошла 11 сентября. Срок подачи 2026 года не нашёл. Организаторы те же, что у DUMP, поэтому можно написать им заранее."},
+   rel:3, topics:["Go","Инструменты / линтеры"],
+   why:"Камерная Go-конференция: 10 докладов уровня middle+. В 2026 году был доклад «LLM-агент как backend-система на Go».",
+   angle:"Свой линтер или кодоген на Go; агенты в Go-проекте.",
+   links:[["Сайт","https://letsgoconf.ru/"],["TG","https://t.me/LetsGoConf"]]},
+  {name:"AI Native Conf 2027", org:"Онтико", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2027-10-20", dateText:"ожидается ~октябрь 2027", est:true,
+   cfp:{status:"expected", from:"2027-06-01", to:"2027-09-01", toEst:true, text:"~лето 2027",
+        note:"AI Native Conf 2026 прошла 20 октября 2026, а приём докладов ещё шёл в конце лета. В секции «Агентный инжиниринг» были harness, квалити-гейты и CI/CD для автономной разработки."},
+   rel:3, topics:["Агенты / guardrails","AI в разработке","Evals"],
+   why:"Конференция Онтико о внедрении AI в SDLC и агентной инженерии.",
+   angle:"Квалити-гейты и guardrails для автономной разработки.",
+   links:[["Сайт","https://ainativeconf.ru/"],["Источник","https://vibecoding.ru/events/ai-native-conf-2027"]]},
+  {name:"AI Cases Conf 2027", org:"Онтико", country:"Россия", city:"Москва", format:"offline",
+   start:"2027-10-19", dateText:"ожидается ~октябрь 2027", est:true,
+   cfp:{status:"expected", from:"2027-06-01", to:"2027-09-01", toEst:true, text:"~лето 2027", note:"В 2026 году прошла 19 октября, за день до AI Native Conf."},
+   rel:2, topics:["AI в разработке"],
+   why:"Конференция кейсов внедрения AI, нужны цифры результата.",
+   angle:"Кейс: что дали guardrails в Go-команде в цифрах.",
+   links:[["Сайт","https://aicasesconf.ru/"],["Источник","https://vibecoding.ru/events/ai-cases-conf-2027"]]},
+  {name:"HighLoad++ 2026", org:"Онтико", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2026-11-30", dateText:"30 ноября – 1 декабря 2026", est:false,
+   cfp:{status:"closed", text:"закрыта 16 августа", note:"Можно сходить на секции «Внедрение AI в SDLC» и «Агентная платформа» перед подачей на Saint HighLoad++."},
+   rel:2, topics:["AI в разработке","Агенты / guardrails","Backend"],
+   why:"Главная backend-конференция года.", angle:"",
+   links:[["Сайт","https://highload.ru/moscow/2026"]]},
+
+  // ===== САНКТ-ПЕТЕРБУРГ =====
+  {name:"Saint HighLoad++ 2027", org:"Онтико", country:"Россия", city:"Санкт-Петербург", format:"hybrid",
+   start:"2027-06-21", dateText:"июнь 2027", est:false,
+   cfp:{status:"expected", from:"2026-12-15", to:"2027-02-15", toEst:true, text:"~декабрь – середина февраля",
+        note:"В 2026 году заявки принимали до 15 февраля, а потом был добор в стрим «Внедрение AI в SDLC» до 15 мая. Билеты на 2027 уже продаются."},
+   rel:3, topics:["Backend","Агенты / guardrails","AI в разработке","Go"],
+   why:"В секции «Агентная платформа» есть отдельная тема «Ограничители (guardrails): чем резать возможности агента, не убивая его пользу».",
+   angle:"Guardrails агентной платформы; Go-тулинг.",
+   links:[["Сайт","https://highload.ru/spb/2027"],["CFP (следить)","https://cfp.highload.ru/spb/"],["Добор 2026","https://setka.ru/posts/019e0816-b28f-7292-afc6-9ce38d9fc994"]]},
+  {name:"Saint TeamLead Conf 2027", org:"Онтико", country:"Россия", city:"Санкт-Петербург", format:"hybrid",
+   start:"2027-06-24", dateText:"июнь 2027", est:false,
+   cfp:{status:"unknown", text:"не объявлена", note:"Конференция управленческая."},
+   rel:1, topics:["AI в разработке"],
+   why:"Подойдёт управленческий доклад о внедрении AI-агентов в команде.",
+   angle:"Как ввести правила для агентов на всю команду.",
+   links:[["Сайт","https://teamleadconf.ru/spb/2027"]]},
+  {name:"Летняя Conversations 2027", org:"Just AI", country:"Россия", city:"Санкт-Петербург", format:"hybrid",
+   start:"2027-06-24", dateText:"ожидается ~конец июня 2027", est:true,
+   cfp:{status:"expected", from:"2027-02-15", to:"2027-04-15", toEst:true, text:"~февраль – 15 апреля",
+        note:"В 2026 году open call для спикеров шёл до 15 апреля, а конференция прошла 25–26 июня. Адрес для заявок: speakers@conversations-ai.com."},
+   rel:2, topics:["AI в разработке","Агенты / guardrails","Evals"],
+   why:"Конференция о GenAI в продуктах: агенты, RAG, AgentOps.",
+   angle:"Guardrails и evals для агентов в проде.",
+   links:[["Сайт","https://conversations-ai.com/"],["О CFP 2026","https://just-ai.com/blog/letnyaya-conversations-2026-chto-zhdet-uchastnikov"]]},
+  {name:"Стачка 2027 · Санкт-Петербург", org:"Стачка", country:"Россия", city:"Санкт-Петербург", format:"hybrid",
+   start:"2027-10-02", dateText:"ожидается ~начало октября 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"Питерская Стачка 2026 прошла 3–4 октября. Контакт программного комитета: @nastachku_program."},
+   rel:2, topics:["Go","Backend","AI в разработке"],
+   why:"Региональная конференция с отдельным Go-треком.",
+   angle:"Go-линтеры и AI в Go-разработке.",
+   links:[["Сайт","https://spb.nastachku.ru/"]]},
+  {name:"DUMP 2027 · Санкт-Петербург", org:"Speach", country:"Россия", city:"Санкт-Петербург", format:"offline",
+   start:"2027-10-15", dateText:"октябрь 2027", est:false,
+   cfp:{status:"unknown", text:"не объявлена", note:"Это питерская версия DUMP, организаторы те же, что у екатеринбургской."},
+   rel:2, topics:["Backend","AI в разработке"],
+   why:"Питерская версия DUMP с секционной программой.",
+   angle:"Guardrails для агентов, Go-тулинг.",
+   links:[["Сайт","http://dump-spb.ru/"]]},
+
+  // ===== РЕГИОНЫ =====
+  {name:"CodeFest 17", org:"CodeFest", country:"Россия", city:"Новосибирск", format:"offline",
+   start:"2027-05-29", dateText:"29–30 мая 2027", est:false,
+   cfp:{status:"open", text:"открыта, срок не назван",
+        note:"Спикеров начнут публиковать с февраля, а программа появится в апреле. Поэтому лучше подать до конца января."},
+   rel:3, topics:["AI в разработке","Агенты / guardrails","Backend","Инструменты / линтеры"],
+   why:"В темах CFP прямо есть «агенты в разработке и эксплуатации: приёмка результата, границы автономности, контрольные точки, архитектурные ограничения как исполняемые проверки».",
+   angle:"Линтеры как исполняемые архитектурные ограничения для агентов.",
+   links:[["Сайт","https://17.codefest.ru/"],["Подать","https://cfp.codefest.ru/cfp/codefest/new"],["TG","https://t.me/cdfst"]]},
+  {name:"DUMP 2027", org:"Speach / IT-People", country:"Россия", city:"Екатеринбург", format:"offline",
+   start:"2027-04-23", dateText:"23 апреля 2027", est:false,
+   cfp:{status:"open", text:"открыта, срок не назван",
+        note:"На странице для спикеров написано: «Открыт прием заявок на 2027 год!». Подавать нужно в конкретную секцию: Backend, AppSec, TechLead и другие."},
+   rel:3, topics:["Backend","AI в разработке","Агенты / guardrails"],
+   why:"Главная IT-конференция Урала, 13 секций. В программе уже есть «Взлом мультиагентных ИИ систем».",
+   angle:"Guardrails для агентов (тема подходит и для AppSec); Go-тулинг в Backend.",
+   links:[["Сайт","https://dump-ekb.ru/"],["Спикерам","https://dump-ekb.ru/for_speakers"],["Секция Backend","https://dump-ekb.ru/backend"]]},
+  {name:"Синтез | Merge Татарстан 2027", org:"Merge", country:"Россия", city:"Иннополис", format:"offline",
+   start:"2027-04-23", dateText:"23–24 апреля 2027", est:false,
+   cfp:{status:"open", to:"2027-02-17", toEst:true, text:"открыта, ориентир — до ~17 февраля",
+        note:"Срок на 2027 год не назван. В 2026 году приём заявок закончился 17 февраля."},
+   rel:2, topics:["AI в разработке","Backend"],
+   why:"Межрегиональная конференция примерно на 200 докладов, есть направления AI & ML и Backend.",
+   angle:"Практический доклад про AI-агентов и guardrails.",
+   links:[["Сайт","https://innopolis.mergeconf.ru/"],["Стать спикером","https://innopolis.mergeconf.ru/become-speaker"]]},
+  {name:"Стачка 2027 · Ульяновск", org:"Стачка", country:"Россия", city:"Ульяновск", format:"hybrid",
+   start:"2027-04-09", dateText:"ожидается ~апрель 2027", est:true,
+   cfp:{status:"expected", from:"2026-12-15", to:"2027-02-28", toEst:true, text:"~зима, до конца февраля",
+        note:"В 2025 году доклады принимали до 28 февраля. Стачка 2026 прошла 10–11 апреля. Заявка подаётся из личного кабинета на nastachku.ru, контакт: @nastachku_program."},
+   rel:2, topics:["Go","Backend","AI в разработке"],
+   why:"Большая региональная конференция (около 2000 участников) с отдельным Go-треком.",
+   angle:"Go-линтеры и AI в Go-разработке.",
+   links:[["Сайт","https://ul.nastachku.ru/"],["Go-трек 2026","https://ul.nastachku.ru/doklady?track=69&sectionIds=233"],["Спикерам (2025)","https://ul25.nastachku.ru/to-do-speaker-ul25"]]},
+  {name:"TeamLead Conf Siberia 2027", org:"Онтико", country:"Россия", city:"Новосибирск", format:"offline",
+   start:"2027-09-15", dateText:"сентябрь 2027", est:false,
+   cfp:{status:"unknown", text:"не объявлена", note:""},
+   rel:1, topics:["AI в разработке"],
+   why:"Тимлидская конференция, подойдёт управленческий доклад про AI в команде.",
+   angle:"Правила для агентов в команде.",
+   links:[["Сайт","https://teamleadconf.ru/siberia/2027"]]},
+  {name:"Data Fest 2027", org:"ODS", country:"Россия", city:"Москва", format:"hybrid",
+   start:"2027-05-30", dateText:"ожидается ~конец мая – июнь 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"В 2026 году фест шёл серией: Москва (Яндекс, Авито), Алматы, Белград и онлайн."},
+   rel:1, topics:["Evals","AI в разработке"],
+   why:"Data Science-сообщество. Подойдёт доклад про evals, если в нём сильная методика.",
+   angle:"Метрики и датасеты для evals скиллов.",
+   links:[["События ODS","https://ods.ai/events"]]},
+
+  // ===== СНГ =====
+  {name:"beetech conf 2027", org:"QazCode / Beeline Казахстан", country:"Казахстан", city:"Алматы", format:"offline",
+   start:"2027-05-22", dateText:"ожидается ~май 2027", est:true,
+   cfp:{status:"expected", from:"2027-02-01", to:"2027-03-20", toEst:true, text:"~февраль – 20 марта",
+        note:"В 2026 году заявки принимали до 13 марта, потом продлили до 20 марта. В 2025 году срок был 28 февраля. Конференция 2026 прошла 23 мая."},
+   rel:2, topics:["AI в разработке","Backend"],
+   why:"Одна из главных IT-конференций Казахстана, стримы Engineering, Data & AI и Management. В 2026 году там был доклад про agentic harness.",
+   angle:"AI-агенты и guardrails в инженерной практике.",
+   links:[["Сайт","https://beetech.kz/"],["Спикеры 2026","https://beetech.kz/speakers/kz"],["TG QazCode","https://t.me/qazcode_tech"]]},
+  {name:"Kolesa Conf 2027", org:"Kolesa Group", country:"Казахстан", city:"Алматы", format:"offline",
+   start:"2027-10-10", dateText:"ожидается ~октябрь 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"Анонс обычно выходит за 2–3 месяца, примерно в июле–августе. В 2025 году конференция прошла 11 октября."},
+   rel:2, topics:["Backend","AI в разработке"],
+   why:"Крупная продуктовая конференция Казахстана: около 1600 участников, треки Web, Mobile, Data и Management.",
+   angle:"AI в backend-разработке.",
+   links:[["Kolesa Conf 2025","https://astanahub.com/en/blog/kolesa-conf-2025-glavnaia-it-konferentsiia-kazakhstana-proidiot-v-almaty-11-oktiabria"]]},
+  {name:"DevFest Almaty 2027", org:"GDG Almaty", country:"Казахстан", city:"Алматы", format:"offline",
+   start:"2027-11-12", dateText:"ожидается ~ноябрь 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"DevFest Almaty 2026 прошёл 13 ноября."},
+   rel:2, topics:["AI в разработке","Агенты / guardrails"],
+   why:"Бесплатный DevFest от GDG. В 2026 году там были AI-агенты, доклады шли на русском и английском.",
+   angle:"Guardrails для AI-агентов.",
+   links:[["DevFest 2026","https://gdg.community.dev/events/details/google-gdg-almaty-presents-devfest-almaty-2026-build-secure-scale-1/"]]},
+  {name:"GITEX AI Kazakhstan 2027", org:"GITEX", country:"Казахстан", city:"Алматы", format:"offline",
+   start:"2027-06-07", dateText:"7–8 июня 2027", est:false,
+   cfp:{status:"unknown", text:"приёма докладов нет", note:"Это выставка для бизнеса и инвесторов."},
+   rel:1, topics:["AI в разработке"],
+   why:"Можно поехать ради нетворкинга.", angle:"",
+   links:[["Новость","https://www.zakon.kz/ekonomika-biznes/6539038-GITEX-AI-Kazakhstan-2027-uskorit-vnedrenie-ii-na-fone-mnogomilliardnykh-investitsiy-v-tekhnologii.html"]]},
+  {name:"Data Fest Almaty 2027", org:"ODS", country:"Казахстан", city:"Алматы", format:"offline",
+   start:"2027-05-29", dateText:"ожидается ~конец мая 2027", est:true,
+   cfp:{status:"unknown", text:"не объявлена", note:"Алматинский Data Fest 2026 прошёл 30 мая."},
+   rel:1, topics:["Evals"],
+   why:"Алматинская площадка Data Fest.", angle:"Evals для LLM-скиллов.",
+   links:[["Data Fest Almaty 2026","https://ods.ai/events/fest2026-almaty-30may"]]},
+  {name:"PyData & PyCon Yerevan 2027", org:"AUA / NumFOCUS", country:"Армения", city:"Ереван", format:"offline",
+   start:"2027-06-18", dateText:"18–19 июня 2027", est:false,
+   cfp:{status:"unknown", text:"не объявлена", note:"Можно подписаться на рассылку на сайте."},
+   rel:1, topics:["Evals","AI в разработке"],
+   why:"Python- и data-сообщество. Подойдёт доклад про evals, тема Go здесь мимо.",
+   angle:"Evals для LLM-скиллов.",
+   links:[["Сайт","https://yerevan2026.pydata.org/2027.html"]]},
+  {name:"DevFest Armenia 2027", org:"GDG Yerevan", country:"Армения", city:"Ереван", format:"offline",
+   start:"2027-11-20", dateText:"ожидается ~ноябрь 2027", est:true,
+   cfp:{status:"expected", from:"2027-09-03", to:"2027-11-08", toEst:true, text:"~сентябрь – начало ноября",
+        note:"В 2026 году CFP на Sessionize был открыт с 3 сентября по 8 ноября, а DevFest прошёл 21 ноября."},
+   rel:2, topics:["AI в разработке","Агенты / guardrails"],
+   why:"Главный DevFest Армении, AI в основной тематике.",
+   angle:"Guardrails и evals для агентов.",
+   links:[["CFP 2026 (пример)","https://sessionize.com/devfest-armenia-2026"]]},
+  {name:"GDG DevFest Tashkent", org:"GDG Tashkent", country:"Узбекистан", city:"Ташкент", format:"offline",
+   start:"2026-12-05", dateText:"обычно декабрь (2025: 6 декабря)", est:true,
+   cfp:{status:"unknown", text:"анонса 2026 года нет", note:"CFP обычно идёт через Sessionize."},
+   rel:1, topics:["AI в разработке"],
+   why:"Основное событие для разработчиков в Ташкенте.",
+   angle:"AI-агенты в разработке.",
+   links:[["GDG Tashkent","https://www.meetup.com/gdg-tashkent/"],["CFP 2025 (пример)","https://sessionize.com/gdg-devfest-2025-tashkent/"]]}
+];
+
+const TOPICS = ["AI в разработке","Агенты / guardrails","Evals","Go","Инструменты / линтеры","Backend"];
+const ST = {open:"Открыта", expected:"Ожидается", unknown:"Неизвестно", closed:"Закрыта"};
+const FORMAT_LABEL = {online:"Онлайн", offline:"Офлайн", hybrid:"Офлайн + онлайн"};
+const TODAY = "2026-11-21";
+const T0 = Date.parse("2026-11-01"), T1 = Date.parse("2027-12-31");
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = iso => new Date(iso+"T00:00:00").toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"});
+const days = iso => Math.round((Date.parse(iso) - Date.parse(TODAY)) / 864e5);
+const pct = iso => Math.max(0, Math.min(100, (Date.parse(iso) - T0) / (T1 - T0) * 100));
+const plural = (n,a,b,c) => { const m=n%10, h=n%100; return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<12||h>14))?b:c; };
+
+function cfpHeadline(e){
+  const c=e.cfp;
+  if(c.status==="open" && c.to && !c.toEst){ const d=days(c.to); return `до ${fmt(c.to)} · <span class="left ${d<=21?'red':''}">осталось ${d} ${plural(d,"день","дня","дней")}</span>`; }
+  return esc(c.text);
+}
+
+function timeline(e){
+  const c=e.cfp; let seg="";
+  if(c.status==="open"||c.status==="expected"){
+    const from = c.from || (c.status==="open" ? TODAY : (c.to ? new Date(Date.parse(c.to)-60*864e5).toISOString().slice(0,10) : null));
+    let to = c.to;
+    if(!to && c.status==="open") to = new Date(Date.parse(e.start)-30*864e5).toISOString().slice(0,10);
+    if(from && to){
+      const l=pct(from), r=pct(to);
+      const cls = (c.status==="open" && !c.toEst && c.to) ? "open" : (c.status==="open" ? "open" : "exp");
+      const style = (c.status==="open" && (c.toEst || !c.to)) ? "opacity:.55" : "";
+      seg = `<div class="seg-cfp ${cls}" style="left:${l}%;width:${Math.max(r-l,0.8)}%;${style}" title="Подача"></div>`;
+    }
+  }
+  let ticks="";
+  for(let y=2026,m=11;!(y===2028&&m===1);){ const iso=`${y}-${String(m).padStart(2,"0")}-01`; const p=pct(iso);
+    const lab=new Date(iso).toLocaleDateString("ru-RU",{month:"short"}).replace(".","");
+    ticks+=`<div class="tick" style="left:${p}%"></div>${(m%2===1||m===12)?`<div class="m" style="left:${p+2}%">${lab}${m===1?" ’"+String(y).slice(2):""}</div>`:""}`;
+    m++; if(m===13){m=1;y++;} }
+  return `<div class="tl"><div class="bar"></div>${ticks}${seg}<div class="evd ${e.est?'est':''}" style="left:${pct(e.start)}%" title="Конференция"></div><div class="today" style="left:${pct(TODAY)}%"></div></div>`;
+}
+
+function card(e){
+  const c=e.cfp;
+  return `<div class="ev">
+    <div class="top">
+      <div><h3>${esc(e.name)}</h3><div class="org">${esc(e.org)}</div></div>
+      <div class="stars" title="Релевантность вашим темам">${"★".repeat(e.rel)}<span style="opacity:.25">${"★".repeat(3-e.rel)}</span></div>
+    </div>
+    <div class="two">
+      <div class="slot cfp-${c.status}">
+        <div class="k">📣 Подача <span class="badge b-${c.status}">${ST[c.status]}</span>${c.toEst?'<span class="badge b-est">оценка</span>':''}</div>
+        <div class="v">${cfpHeadline(e)}</div>
+        ${c.note?`<div class="n">${esc(c.note)}</div>`:""}
+      </div>
+      <div class="slot event">
+        <div class="k">🎤 Конференция ${e.est?'<span class="badge b-est">дата ожидается</span>':''}</div>
+        <div class="v">${esc(e.dateText)}</div>
+        <div class="n">${esc(e.city)}${e.country!=="Онлайн"&&e.city!==e.country?", "+esc(e.country):""} · ${FORMAT_LABEL[e.format]}</div>
+      </div>
+    </div>
+    ${timeline(e)}
+    <p class="why">${esc(e.why)}</p>
+    ${e.angle?`<p class="angle"><b>С чем подаваться:</b> ${esc(e.angle)}</p>`:""}
+    <div class="foot">
+      <div class="tags">${e.topics.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+      <div class="links">${e.links.map(([t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")}</div>
+    </div>
+  </div>`;
+}
+
+function sortKeyCfp(e){
+  const order={open:0,expected:1,unknown:2,closed:3}[e.cfp.status];
+  return [order, e.cfp.to || "9999", e.start];
+}
+function cmp(a,b){ const x=sortKeyCfp(a), y=sortKeyCfp(b); for(let i=0;i<x.length;i++){ if(x[i]<y[i]) return -1; if(x[i]>y[i]) return 1; } return b.rel-a.rel; }
+
+function table(rows){
+  rows=[...rows].sort(cmp);
+  return `<div class="tablewrap"><table>
+    <thead><tr><th>Подача</th><th>Статус</th><th>Конференция</th><th>Когда проходит</th><th>Где</th><th>★</th></tr></thead>
+    <tbody>${rows.map(e=>{const c=e.cfp; const main=c.link||e.links.find(l=>/Подать|CFP|Форма|Спикер/i.test(l[0]))||e.links[0];
+      return `<tr>
+        <td><b>${cfpHeadline(e)}</b>${c.toEst?'<small>оценка по прошлому году</small>':''}</td>
+        <td><span class="badge b-${c.status}">${ST[c.status]}</span></td>
+        <td><a href="${esc(main[1])}" target="_blank" rel="noopener">${esc(e.name)}</a><small>${esc(e.org)}</small></td>
+        <td>${esc(e.dateText)}${e.est?'<small>дата ожидается</small>':''}</td>
+        <td>${esc(e.city)}<small>${FORMAT_LABEL[e.format]}</small></td>
+        <td class="stars">${"★".repeat(e.rel)}</td></tr>`;}).join("")}</tbody></table></div>`;
+}
+
+function fillSelect(el, values){ [...new Set(values)].sort((a,b)=>a.localeCompare(b,"ru")).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent=v;el.appendChild(o);}); }
+fillSelect($("country"), EVENTS.map(e=>e.country));
+fillSelect($("city"), EVENTS.map(e=>e.city));
+
+const activeTopics = new Set();
+TOPICS.forEach(t=>{ const c=document.createElement("span"); c.className="chip"; c.textContent=t;
+  c.onclick=()=>{ activeTopics.has(t)?activeTopics.delete(t):activeTopics.add(t); c.classList.toggle("on"); render(); };
+  $("topics").appendChild(c); });
+
+let view="cards";
+document.querySelectorAll("#view button").forEach(b=>b.onclick=()=>{ view=b.dataset.v; document.querySelectorAll("#view button").forEach(x=>x.classList.toggle("on",x===b)); render(); });
+
+function inPeriod(e,p){ const s=e.start;
+  if(p==="now") return s<="2027-02-28"; if(p==="spring") return s>="2027-03-01"&&s<="2027-06-30"; if(p==="late") return s>="2027-07-01"; return true; }
+
+function render(){
+  const q=$("q").value.trim().toLowerCase();
+  const f={country:$("country").value, city:$("city").value, format:$("format").value, cfp:$("cfp").value, period:$("period").value, rel:+$("rel").value};
+  const rows=EVENTS.filter(e=>{
+    if(f.country&&e.country!==f.country) return false;
+    if(f.city&&e.city!==f.city) return false;
+    if(f.format&&e.format!==f.format) return false;
+    if(f.cfp&&e.cfp.status!==f.cfp) return false;
+    if(e.rel<f.rel) return false;
+    if(f.period&&!inPeriod(e,f.period)) return false;
+    if(activeTopics.size&&!e.topics.some(t=>activeTopics.has(t))) return false;
+    if(q&&!(e.name+" "+e.org+" "+e.city+" "+e.why+" "+e.angle+" "+e.cfp.note+" "+e.topics.join(" ")).toLowerCase().includes(q)) return false;
+    return true; });
+  $("count").textContent=`Найдено: ${rows.length} из ${EVENTS.length}` + (view==="cards"?" · сортировка по сроку подачи":"");
+  if(!rows.length){ $("out").innerHTML='<div class="empty">Ничего не найдено, ослабьте фильтры</div>'; return; }
+  $("out").innerHTML = view==="table" ? table(rows) : `<div class="list">${[...rows].sort(cmp).map(card).join("")}</div>`;
+}
+
+function renderSummary(){
+  const open=EVENTS.filter(e=>e.cfp.status==="open").sort(cmp);
+  $("openList").innerHTML=open.map(e=>`<div class="mini"><div class="l"><b>${esc(e.name)}</b><small>${esc(e.dateText)} · ${esc(e.city)}</small></div>
+    <div class="r ${e.cfp.to&&!e.cfp.toEst?'red':''}">${e.cfp.to?(e.cfp.toEst?"≈ ":"")+"до "+new Date(e.cfp.to+"T00:00:00").toLocaleDateString("ru-RU",{day:"numeric",month:"short"}):"срок не назван"}
+    ${e.cfp.to&&!e.cfp.toEst?`<small>осталось ${days(e.cfp.to)} дн.</small>`:""}</div></div>`).join("");
+  const soon=EVENTS.filter(e=>e.cfp.status==="expected").sort(cmp);
+  $("soonList").innerHTML=soon.map(e=>`<div class="mini"><div class="l"><b>${esc(e.name)}</b><small>${esc(e.dateText)} · ${esc(e.city)}</small></div>
+    <div class="r amber">${esc(e.cfp.text)}<small>оценка</small></div></div>`).join("");
+}
+
+["q","country","city","format","cfp","period","rel"].forEach(id=>$(id).addEventListener("input",render));
+$("reset").onclick=()=>{ ["q","country","city","format","cfp","period"].forEach(id=>$(id).value=""); $("rel").value="0"; activeTopics.clear(); document.querySelectorAll(".chip").forEach(c=>c.classList.remove("on")); render(); };
+renderSummary(); render();
+</script>
+</body>
+</html>
